@@ -49,6 +49,6 @@ cmd("autocmd Filetype html setlocal ts=2 sw=2 expandtab")
 cmd("autocmd Filetype css setlocal ts=2 sw=2 sts=0 expandtab")
 
 if vim.g.neovide then
-	vim.opt.guifont = { "mononoki", "h14" }
+	vim.opt.guifont = "mononoki:h16"
 	vim.opt.linespace = 1
 end
