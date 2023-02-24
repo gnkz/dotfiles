@@ -10,13 +10,13 @@ return {
 		{
 			"glepnir/lspsaga.nvim",
 			config = function()
-				require("lspsaga").setup()
+				require("lspsaga").setup({})
 			end
 		},
 		{
 			"folke/trouble.nvim",
 			config = function()
-				require("trouble").setup()
+				require("trouble").setup({})
 			end
 		}
 	},
@@ -40,7 +40,7 @@ return {
 	},
 	config = function()
 		require("rust-tools").setup()
-		require("neodev").setup()
+		require("neodev").setup({})
 		require("mason").setup({
 			ui = {
 				icons = {
@@ -75,7 +75,7 @@ return {
 
 		masonconfig.setup_handlers({
 			function(server_name)
-				require("lspconfig")[server_name].setup()
+				require("lspconfig")[server_name].setup({})
 			end,
 			["lua_ls"] = function()
 				lspconfig.lua_ls.setup({
@@ -130,7 +130,7 @@ return {
 				})
 			end,
 			["rust_analyzer"] = function()
-				lspconfig.rust_analyzer.setup()
+				lspconfig.rust_analyzer.setup({})
 			end,
 		})
 
