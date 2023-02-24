@@ -25,3 +25,13 @@ map("v", "<leader>Y", 'gg"+yG', { silent = true })
 
 -- Others
 map("n", "<leader>nh", ":noh<CR>", { silent = true })
+
+if vim.g.neovide then
+	vim.g.neovide_input_use_logo = 1
+	map("n", "<D-s>", ":w<cr>")
+	map("v", "<D-c>", '"+y')
+	map("n", "<D-v>", '"+P')
+	map("v", "<D-v>", '"+P')
+	map("c", "<D-v>", "<C-R>+")
+	map("i", "<D-v>", '<ESC>l"+Pli')
+end

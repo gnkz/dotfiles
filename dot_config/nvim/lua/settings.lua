@@ -47,3 +47,8 @@ cmd("autocmd Filetype typescript setlocal ts=4 sw=4 sts=0 expandtab")
 cmd("autocmd Filetype json setlocal ts=2 sw=2 sts=0 expandtab")
 cmd("autocmd Filetype html setlocal ts=2 sw=2 expandtab")
 cmd("autocmd Filetype css setlocal ts=2 sw=2 sts=0 expandtab")
+
+if vim.g.neovide then
+	vim.opt.guifont = { "mononoki", "h14" }
+	vim.opt.linespace = 1
+end
