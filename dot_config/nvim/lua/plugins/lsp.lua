@@ -10,31 +10,37 @@ return {
 		{
 			"glepnir/lspsaga.nvim",
 			config = function()
-				require("lspsaga").setup({})
+				require("lspsaga").setup()
 			end
 		},
 		{
 			"folke/trouble.nvim",
 			config = function()
-				require("trouble").setup({})
+				require("trouble").setup()
 			end
 		}
 	},
 	keys = {
-		{ "<leader>ca", "<cmd>Lspsaga code_action<CR>" },
-		{ "gD",         "<cmd>lua vim.lsp.buf.declaration()<cr>" },
-		{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>" },
-		{ "[d",         "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
-		{ "]d",         "<cmd>lua vim.diagnostic.goto_next()<cr>" },
-		{ "<leader>sh", "<cmd>lua vim.lsp.buf.hover()<cr>" },
 		{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
 		{ "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
 		{ "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
 		{ "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
 		{ "<leader>xx", "<cmd>TroubleToggle<cr>" },
+		{ "<leader>rn", "<cmd>Lspsaga rename<cr>" },
+		{ "<leader>ca", "<cmd>Lspsaga code_action<CR>" },
+		{ "<leader>o",  "<cmd>Lspsaga outline<cr>" },
+		{ "gf",         "<cmd>Lspsaga lsp_finder<cr>" },
+		{ "gD",         "<cmd>Lspsaga peek_definition<cr>" },
+		{ "gd",         "<cmd>Lspsaga goto_definition<CR>" },
+		{ "gt",         "<cmd>Lspsaga goto_type_definition<CR>" },
+		{ "gT",         "<cmd>Lspsaga peek_type_definition<CR>" },
+		{ "<leader>sh", "<cmd>Lspsaga hover_doc<cr>" },
+		{ "[d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>" },
+		{ "]d",         "<cmd>Lspsaga diagnostic_jump_next<cr>" },
 	},
 	config = function()
-		require("neodev").setup({})
+		require("rust-tools").setup()
+		require("neodev").setup()
 		require("mason").setup({
 			ui = {
 				icons = {
@@ -69,7 +75,7 @@ return {
 
 		masonconfig.setup_handlers({
 			function(server_name)
-				require("lspconfig")[server_name].setup({})
+				require("lspconfig")[server_name].setup()
 			end,
 			["lua_ls"] = function()
 				lspconfig.lua_ls.setup({
@@ -124,8 +130,7 @@ return {
 				})
 			end,
 			["rust_analyzer"] = function()
-				require("rust-tools").setup({})
-				lspconfig.rust_analyzer.setup({})
+				lspconfig.rust_analyzer.setup()
 			end,
 		})
 

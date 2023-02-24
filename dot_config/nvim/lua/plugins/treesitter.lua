@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		config = function ()
+		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"json",
@@ -11,6 +11,9 @@ return {
 					"lua",
 					"fish",
 					"solidity",
+					"rust",
+					"markdown",
+					"markdown_inline"
 				},
 			})
 		end

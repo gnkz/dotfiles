@@ -11,11 +11,6 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		keys = {
-			{ "gr",         "<cmd>Telescope lsp_references<cr>" },
-			{ "gi",         "<cmd>Telescope lsp_implementations<CR>" },
-			{ "gd",         "<cmd>Telescope lsp_definitions<CR>" },
-			{ "gt",         "<cmd>Telescope lsp_type_definitions<CR>" },
-			{ "<leader>ds", "<cmd>Telescope diagnostics<CR>" },
 			{ "<leader>fb", "<cmd>Telescope git_branches<CR>" },
 			{ "<leader>pp", "<cmd>Telescope find_files<CR>" },
 			{ "<leader>ps", "<cmd>Telescope live_grep<CR>" },
