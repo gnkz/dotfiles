@@ -34,4 +34,8 @@ if vim.g.neovide then
 	map("v", "<D-v>", '"+P')
 	map("c", "<D-v>", "<C-R>+")
 	map("i", "<D-v>", '<ESC>l"+Pli')
+	map("", "<D-v>", "+p<CR>", { silent = true })
+	map("!", "<D-v>", "<C-R>+", { silent = true })
+	map("t", "<D-v>", "<C-R>+", { silent = true })
+	map("v", "<D-v>", "<C-R>+", { silent = true })
 end
