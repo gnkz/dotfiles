@@ -67,71 +67,64 @@ return {
 			ensure_installed = servers,
 		})
 
+		require("neodev").setup({})
+		require("rust-tools").setup({})
+
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
 			capabilities = capabilities
 		})
 
-		masonconfig.setup_handlers({
-			function(server_name)
-				require("lspconfig")[server_name].setup({})
-			end,
-			["lua_ls"] = function()
-				require("neodev").setup({})
-				lspconfig.lua_ls.setup({
-					settings = {
-						Lua = {
-							runtime = {
-								version = "LuaJIT",
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-							diagnostics = {
-								enable = true,
-								-- globals = { "vim" }
-							},
-							format = {
-								enable = true,
-								defaultConfig = {
-									quote_style = "double"
-								}
-							}
+		lspconfig.dockerls.setup({})
+		lspconfig.yamlls.setup({})
+		lspconfig.jsonls.setup({})
+
+		lspconfig.lua_ls.setup({
+			settings = {
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					completion = {
+						callSnippet = "Replace",
+					},
+					diagnostics = {
+						enable = true,
+					},
+					format = {
+						enable = true,
+						defaultConfig = {
+							quote_style = "double"
 						}
 					}
-				})
-			end,
-			["eslint"] = function()
-				local augroup = vim.api.nvim_create_augroup("EslintFormatting", {})
-				lspconfig.eslint.setup({
-					on_attach = function(client, bufnr)
-						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-						client.server_capabilities.documentFormattingProvider = true
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({
-									bufnr = bufnr
-								})
-							end,
+				}
+			}
+		})
+
+		local augroup = vim.api.nvim_create_augroup("EslintFormatting", {})
+		lspconfig.eslint.setup({
+			on_attach = function(client, bufnr)
+				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+				client.server_capabilities.documentFormattingProvider = true
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format({
+							bufnr = bufnr
 						})
 					end,
-					settings = {
-						format = { enable = false },
-					},
 				})
 			end,
-			["tsserver"] = function()
-				lspconfig.tsserver.setup({
-					on_attach = function(client, _)
-						client.server_capabilities.documentFormattingProvider = false
-					end,
-				})
-			end,
-			["rust_analyzer"] = function()
-				require("rust-tools").setup({})
+			settings = {
+				format = { enable = false },
+			},
+		})
+
+		lspconfig.tsserver.setup({
+			on_attach = function(client, _)
+				client.server_capabilities.documentFormattingProvider = false
 			end,
 		})
 	end
