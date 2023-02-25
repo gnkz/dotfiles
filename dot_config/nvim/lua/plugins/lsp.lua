@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		{ "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 		"simrat39/rust-tools.nvim",
 		"folke/neodev.nvim",
 		{
@@ -37,9 +36,10 @@ return {
 		{ "<leader>sh", "<cmd>Lspsaga hover_doc<cr>" },
 		{ "[d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>" },
 		{ "]d",         "<cmd>Lspsaga diagnostic_jump_next<cr>" },
+		{ "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<cr>" },
 	},
 	config = function()
-		require("rust-tools").setup()
+		require("rust-tools").setup({})
 		require("neodev").setup({})
 		require("mason").setup({
 			ui = {
@@ -51,7 +51,6 @@ return {
 
 		local masonconfig = require("mason-lspconfig")
 		local lspconfig = require("lspconfig")
-		local null_ls = require("null-ls")
 
 		local servers = {
 			"eslint",
@@ -132,12 +131,6 @@ return {
 			["rust_analyzer"] = function()
 				lspconfig.rust_analyzer.setup({})
 			end,
-		})
-
-		null_ls.setup({
-			sources = {
-				null_ls.builtins.code_actions.gitsigns,
-			},
 		})
 	end
 }

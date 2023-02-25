@@ -13,7 +13,10 @@ return {
 					"solidity",
 					"rust",
 					"markdown",
-					"markdown_inline"
+					"markdown_inline",
+					"vim",
+					"regex",
+					"bash"
 				},
 			})
 		end
