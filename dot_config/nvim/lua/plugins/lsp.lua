@@ -17,6 +17,12 @@ return {
 			config = function()
 				require("trouble").setup({})
 			end
+		},
+		{
+			"kevinhwang91/nvim-ufo",
+			dependencies = {
+				"kevinhwang91/promise-async"
+			}
 		}
 	},
 	keys = {
@@ -37,10 +43,10 @@ return {
 		{ "[d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>" },
 		{ "]d",         "<cmd>Lspsaga diagnostic_jump_next<cr>" },
 		{ "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<cr>" },
+		{ "zR",         "<cmd>lua require('ufo').openAllFolds()<cr>" },
+		{ "zM",         "<cmd>lua require('ufo').closeAllFolds()<cr>" },
 	},
 	config = function()
-		require("rust-tools").setup({})
-		require("neodev").setup({})
 		require("mason").setup({
 			ui = {
 				icons = {
@@ -59,7 +65,7 @@ return {
 			"yamlls",
 			"lua_ls",
 			"jsonls",
-			"rust_analyzer",
+			"rust_analyzer"
 		}
 
 		masonconfig.setup({
@@ -69,7 +75,14 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
-			capabilities = capabilities,
+			capabilities = vim.tbl_deep_extend("force", capabilities, {
+				textDocument = {
+					foldingRange = {
+						dynamicRegistration = false,
+						lineFoldingOnly = true
+					}
+				}
+			})
 		})
 
 		masonconfig.setup_handlers({
@@ -77,6 +90,7 @@ return {
 				require("lspconfig")[server_name].setup({})
 			end,
 			["lua_ls"] = function()
+				require("neodev").setup({})
 				lspconfig.lua_ls.setup({
 					settings = {
 						Lua = {
@@ -129,8 +143,10 @@ return {
 				})
 			end,
 			["rust_analyzer"] = function()
-				lspconfig.rust_analyzer.setup({})
+				require("rust-tools").setup({})
 			end,
 		})
+
+		require("ufo").setup()
 	end
 }
