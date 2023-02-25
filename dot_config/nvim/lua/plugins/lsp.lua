@@ -8,43 +8,38 @@ return {
 		"folke/neodev.nvim",
 		{
 			"glepnir/lspsaga.nvim",
+			keys = {
+				{ "<leader>rn", "<cmd>Lspsaga rename<cr>" },
+				{ "<leader>ca", "<cmd>Lspsaga code_action<CR>" },
+				{ "<leader>o",  "<cmd>Lspsaga outline<cr>" },
+				{ "gf",         "<cmd>Lspsaga lsp_finder<cr>" },
+				{ "gD",         "<cmd>Lspsaga peek_definition<cr>" },
+				{ "gd",         "<cmd>Lspsaga goto_definition<CR>" },
+				{ "gt",         "<cmd>Lspsaga goto_type_definition<CR>" },
+				{ "gT",         "<cmd>Lspsaga peek_type_definition<CR>" },
+				{ "<leader>sh", "<cmd>Lspsaga hover_doc<cr>" },
+				{ "[d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>" },
+				{ "]d",         "<cmd>Lspsaga diagnostic_jump_next<cr>" },
+				{ "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<cr>" },
+			},
 			config = function()
 				require("lspsaga").setup({})
 			end
 		},
 		{
 			"folke/trouble.nvim",
+			keys = {
+
+				{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
+				{ "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
+				{ "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
+				{ "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
+				{ "<leader>xx", "<cmd>TroubleToggle<cr>" },
+			},
 			config = function()
 				require("trouble").setup({})
 			end
 		},
-		{
-			"kevinhwang91/nvim-ufo",
-			dependencies = {
-				"kevinhwang91/promise-async"
-			}
-		}
-	},
-	keys = {
-		{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
-		{ "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
-		{ "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
-		{ "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
-		{ "<leader>xx", "<cmd>TroubleToggle<cr>" },
-		{ "<leader>rn", "<cmd>Lspsaga rename<cr>" },
-		{ "<leader>ca", "<cmd>Lspsaga code_action<CR>" },
-		{ "<leader>o",  "<cmd>Lspsaga outline<cr>" },
-		{ "gf",         "<cmd>Lspsaga lsp_finder<cr>" },
-		{ "gD",         "<cmd>Lspsaga peek_definition<cr>" },
-		{ "gd",         "<cmd>Lspsaga goto_definition<CR>" },
-		{ "gt",         "<cmd>Lspsaga goto_type_definition<CR>" },
-		{ "gT",         "<cmd>Lspsaga peek_type_definition<CR>" },
-		{ "<leader>sh", "<cmd>Lspsaga hover_doc<cr>" },
-		{ "[d",         "<cmd>Lspsaga diagnostic_jump_prev<cr>" },
-		{ "]d",         "<cmd>Lspsaga diagnostic_jump_next<cr>" },
-		{ "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<cr>" },
-		{ "zR",         "<cmd>lua require('ufo').openAllFolds()<cr>" },
-		{ "zM",         "<cmd>lua require('ufo').closeAllFolds()<cr>" },
 	},
 	config = function()
 		require("mason").setup({
@@ -75,14 +70,7 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
-			capabilities = vim.tbl_deep_extend("force", capabilities, {
-				textDocument = {
-					foldingRange = {
-						dynamicRegistration = false,
-						lineFoldingOnly = true
-					}
-				}
-			})
+			capabilities = capabilities
 		})
 
 		masonconfig.setup_handlers({
@@ -146,7 +134,5 @@ return {
 				require("rust-tools").setup({})
 			end,
 		})
-
-		require("ufo").setup()
 	end
 }

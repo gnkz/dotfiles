@@ -40,10 +40,6 @@ opt("w", "relativenumber", true)
 opt("w", "number", true)
 opt("w", "signcolumn", "yes")
 opt("o", "laststatus", 3)
-vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
 
 cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
 cmd("autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab")
