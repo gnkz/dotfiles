@@ -23,7 +23,11 @@ return {
                 { "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<cr>" },
             },
             config = function()
-                require("lspsaga").setup({})
+                require("lspsaga").setup({
+                    symbol_in_winbar = {
+                        enable = false
+                    }
+                })
             end
         },
         {
@@ -61,7 +65,6 @@ return {
             "lua_ls",
             "jsonls",
             "rust_analyzer",
-            "solc"
         }
 
         masonconfig.setup({
@@ -80,10 +83,6 @@ return {
         lspconfig.dockerls.setup({})
         lspconfig.yamlls.setup({})
         lspconfig.jsonls.setup({})
-
-        lspconfig.solc.setup({
-            cmd = { "solc", "--include-path", "./lib/forge-std/src", "--base-path", "./src", "--lsp" }
-        })
 
         lspconfig.lua_ls.setup({
             settings = {

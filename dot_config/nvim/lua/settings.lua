@@ -10,11 +10,13 @@ local function opt(scope, key, value)
 end
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 cmd("syntax enable")
 cmd("filetype plugin indent on")
 cmd("highlight WinSeparator guibg=None")
 
+opt("o", "conceallevel", 2)
 opt("b", "shiftwidth", indent)
 opt("b", "smartindent", true)
 opt("b", "swapfile", false)
