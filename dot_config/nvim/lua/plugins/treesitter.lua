@@ -19,7 +19,8 @@ return {
 					"vim",
 					"regex",
 					"bash",
-					"zig"
+					"zig",
+					"toml"
 				},
 				highlight = {
 					enable = true,
