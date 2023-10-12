@@ -65,7 +65,7 @@ return {
 			"lua_ls",
 			"jsonls",
 			"rust_analyzer",
-			-- "zls"
+			"solidity_ls_nomicfoundation"
 		}
 
 		masonconfig.setup({
@@ -170,5 +170,7 @@ return {
 			end,
 			cmd = { "zls" }
 		})
+
+		lspconfig.solidity_ls_nomicfoundation.setup({})
 	end
 }

@@ -3,7 +3,11 @@ then
 	tmux new-session -A -s main	
 fi
 
-source ~/.znap/zsh-snap/znap.zsh
+[[ -r ~/.repos/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.repos/znap
+
+source ~/.repos/znap/znap.zsh
 
 znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions

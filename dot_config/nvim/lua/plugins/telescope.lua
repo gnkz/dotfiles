@@ -4,10 +4,6 @@ return {
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			{
-				"rmagatti/session-lens",
-				dependencies = { "rmagatti/auto-session" }
-			},
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		keys = {
@@ -16,15 +12,9 @@ return {
 			{ "<leader>ps", "<cmd>Telescope live_grep<CR>" },
 			{ "<leader>pb", "<cmd>Telescope buffers<CR>" },
 			{ "<leader>pg", "<cmd>Telescope git_status<CR>" },
-			{ "<leader>sl", "<cmd>Telescope session-lens search_session<CR>" },
 			{ "<leader>//", "<cmd>Telescope current_buffer_fuzzy_find<CR>" },
 		},
 		config = function()
-			require("session-lens").setup({
-				path_display = { "shorten" },
-				previewer = true,
-			})
-
 			local telescope = require("telescope")
 
 			telescope.setup({
@@ -45,7 +35,6 @@ return {
 				},
 			})
 			telescope.load_extension("fzf")
-			telescope.load_extension("session-lens")
 		end
 	}
 }
