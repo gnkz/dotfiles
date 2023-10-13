@@ -73,7 +73,43 @@ return {
 		})
 
 		require("neodev").setup({})
-		require("rust-tools").setup({})
+		local rust_format_augroup = vim.api.nvim_create_augroup("RustFormatting", {})
+		require("rust-tools").setup({
+			tools = {
+				autoSetHints = true,
+				inlay_hints = {
+					auto = true,
+					show_parameter_hints = true
+				}
+			},
+			server = {
+				on_attach = function(client, bufnr)
+					vim.api.nvim_clear_autocmds({ group = rust_format_augroup, buffer = bufnr })
+					client.server_capabilities.documentFormattingProvider = true
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = rust_format_augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({
+								bufnr = bufnr
+							})
+						end,
+					})
+				end,
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							enable = true,
+							command = "clippy"
+						},
+						cargo = {
+							allFeatures = true
+						},
+						format = { enable = false },
+					}
+				}
+			}
+		})
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -84,26 +120,6 @@ return {
 		lspconfig.dockerls.setup({})
 		lspconfig.yamlls.setup({})
 		lspconfig.jsonls.setup({})
-
-		local rust_format_augroup = vim.api.nvim_create_augroup("RustFormatting", {})
-		lspconfig.rust_analyzer.setup({
-			on_attach = function(client, bufnr)
-				vim.api.nvim_clear_autocmds({ group = rust_format_augroup, buffer = bufnr })
-				client.server_capabilities.documentFormattingProvider = true
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = rust_format_augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({
-							bufnr = bufnr
-						})
-					end,
-				})
-			end,
-			settings = {
-				format = { enable = false },
-			},
-		})
 
 		lspconfig.lua_ls.setup({
 			settings = {
@@ -156,7 +172,7 @@ return {
 		local zig_format_augroup = vim.api.nvim_create_augroup("ZigFormatting", {})
 		lspconfig.zls.setup({
 			on_attach = function(client, bufnr)
-				vim.api.nvim_clear_autocmds({ group = rust_format_augroup, buffer = bufnr })
+				vim.api.nvim_clear_autocmds({ group = zig_format_augroup, buffer = bufnr })
 				client.server_capabilities.documentFormattingProvider = true
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = zig_format_augroup,
