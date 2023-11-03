@@ -143,29 +143,25 @@ return {
 			}
 		})
 
-		local eslint_format_augroup = vim.api.nvim_create_augroup("EslintFormatting", {})
 		lspconfig.eslint.setup({
 			on_attach = function(client, bufnr)
-				vim.api.nvim_clear_autocmds({ group = eslint_format_augroup, buffer = bufnr })
-				client.server_capabilities.documentFormattingProvider = true
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = eslint_format_augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({
-							bufnr = bufnr
-						})
-					end,
-				})
+				client.server_capabilities.documentFormattingProvider = false
 			end,
-			settings = {
-				format = { enable = false },
-			},
 		})
 
+
+		local tsserver_format_augroup = vim.api.nvim_create_augroup("TsServerFormatting", {})
 		lspconfig.tsserver.setup({
-			on_attach = function(client, _)
+			on_attach = function(client, bufnr)
+				vim.api.nvim_clear_autocmds({ group = tsserver_format_augroup, buffer = bufnr })
 				client.server_capabilities.documentFormattingProvider = false
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = tsserver_format_augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.cmd("Neoformat prettierd")
+					end
+				})
 			end,
 		})
 
@@ -187,6 +183,20 @@ return {
 			cmd = { "zls" }
 		})
 
-		lspconfig.solidity_ls_nomicfoundation.setup({})
+		local solidity_format_augroup = vim.api.nvim_create_augroup("SolidityFormat", {})
+
+		lspconfig.solidity_ls_nomicfoundation.setup({
+			on_attach = function(client, bufnr)
+				vim.api.nvim_clear_autocmds({ group = solidity_format_augroup, buffer = bufnr })
+				client.server_capabilities.documentFormattingProvider = false;
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = solidity_format_augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.cmd("Neoformat solidity")
+					end
+				})
+			end
+		})
 	end
 }
