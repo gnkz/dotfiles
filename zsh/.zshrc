@@ -27,7 +27,8 @@ alias ll="exa -l"
 
 export EDITOR="nvim"
 
-export PATH="$PATH:/Users/gsanchezv/.foundry/bin:/Users/gsanchezv/.cargo/bin"
+export GOBIN="$HOME/go/bin"
+export PATH="$PATH:$HOME/.foundry/bin:$HOME/.cargo/bin:$GOBIN"
 export CC=gcc-12
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -37,8 +38,10 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # bun completions
-[ -s "/Users/gonzalosanchez/.bun/_bun" ] && source "/Users/gonzalosanchez/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+source "$HOME/.config/broot/launcher/bash/br"

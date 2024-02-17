@@ -65,7 +65,9 @@ return {
 			"lua_ls",
 			"jsonls",
 			"rust_analyzer",
-			"solidity_ls_nomicfoundation"
+			"solidity_ls_nomicfoundation",
+			"terraformls",
+			"gopls"
 		}
 
 		masonconfig.setup({
@@ -157,7 +159,6 @@ return {
 				client.server_capabilities.documentFormattingProvider = false
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = tsserver_format_augroup,
-					buffer = bufnr,
 					callback = function()
 						vim.cmd("Neoformat prettierd")
 					end
@@ -172,7 +173,6 @@ return {
 				client.server_capabilities.documentFormattingProvider = true
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = zig_format_augroup,
-					buffer = bufnr,
 					callback = function()
 						vim.lsp.buf.format({
 							bufnr = bufnr
@@ -190,10 +190,52 @@ return {
 				vim.api.nvim_clear_autocmds({ group = solidity_format_augroup, buffer = bufnr })
 				client.server_capabilities.documentFormattingProvider = false;
 				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = { "*.sol" },
 					group = solidity_format_augroup,
-					buffer = bufnr,
 					callback = function()
-						vim.cmd("Neoformat solidity")
+						vim.cmd("Neoformat solidity forge")
+					end
+				})
+			end
+		})
+
+		lspconfig.terraformls.setup {
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = { "*.tf", "*.tfvars" },
+					callback = function()
+						vim.lsp.buf.format()
+					end
+				})
+			end
+		}
+
+		lspconfig.gopls.setup({
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
+					},
+					staticcheck = true,
+					gofumpt = true,
+				},
+			},
+
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = { "*.go" },
+					callback = function()
+						vim.lsp.buf.format()
+					end
+				})
+			end
+		})
+		lspconfig.sqls.setup({
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = { "*.sql" },
+					callback = function()
+						vim.cmd("Neoformat sleek")
 					end
 				})
 			end

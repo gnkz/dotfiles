@@ -20,7 +20,10 @@ return {
 					"regex",
 					"bash",
 					"zig",
-					"toml"
+					"toml",
+					"terraform",
+					"go",
+					"sql"
 				},
 				highlight = {
 					enable = true,
