@@ -1,9 +1,9 @@
 return {
 	{
 		"folke/noice.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 		config = function()
 			require("noice").setup({
@@ -21,6 +21,15 @@ return {
 					inc_rename = false,
 					lsp_doc_border = false,
 				},
+			})
+		end
+	},
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				render = "wrapped-compact",
+				max_width = 50
 			})
 		end
 	}

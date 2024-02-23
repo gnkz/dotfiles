@@ -113,11 +113,11 @@ return {
 			}
 		})
 
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
-			capabilities = capabilities
-		})
+		-- lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
+		-- 	capabilities = capabilities
+		-- })
 
 		lspconfig.dockerls.setup({})
 		lspconfig.yamlls.setup({})
