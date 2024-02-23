@@ -33,7 +33,7 @@ return {
 					end
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping.scroll_docs( -4),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
@@ -52,7 +52,7 @@ return {
 					["<S-Tab>"] = cmp.mapping(function()
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif vim.fn["vsnip#jumpable"]( -1) == 1 then
+						elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 							feedkey("<Plug>(vsnip-jump-prev)", "")
 						end
 					end, { "i", "s" }),

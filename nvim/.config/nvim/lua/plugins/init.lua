@@ -1,15 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 
-	"b3nj5m1n/kommentary",
-
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}
-	},
-
-
 	{
 		"kylechui/nvim-surround",
 		branch = "main",
