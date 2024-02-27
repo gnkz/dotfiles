@@ -42,6 +42,7 @@ opt("w", "relativenumber", true)
 opt("w", "number", true)
 opt("w", "signcolumn", "yes")
 opt("o", "laststatus", 3)
+opt("o", "completeopt", "menu,menuone,noinsert,noselect")
 
 cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
 cmd("autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab")
