@@ -1,5 +1,4 @@
 return {
-	"wikitopian/hardmode",
 	"lukas-reineke/indent-blankline.nvim",
 
 	{
