@@ -6,23 +6,9 @@ return {
 		branch = "main",
 		config = function()
 			require("nvim-surround").setup()
-		end
-	},
-
-	{
-		"folke/trouble.nvim",
-		dependencies = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("trouble").setup()
 		end,
 	},
 
-	{
-		"lewis6991/impatient.nvim",
-		config = function()
-			require("impatient")
-		end,
-	},
 	{
 		"folke/which-key.nvim",
 		config = function()

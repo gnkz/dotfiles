@@ -23,11 +23,12 @@ return {
 					"toml",
 					"terraform",
 					"go",
-					"sql"
+					"sql",
+					"vimdoc",
 				},
 				highlight = {
 					enable = true,
-					additional_vim_regex_highlighting = false
+					additional_vim_regex_highlighting = false,
 				},
 				incremental_selection = {
 					enable = true,
@@ -39,9 +40,9 @@ return {
 					},
 				},
 				indent = {
-					enable = true
-				}
+					enable = true,
+				},
 			})
-		end
-	}
+		end,
+	},
 }

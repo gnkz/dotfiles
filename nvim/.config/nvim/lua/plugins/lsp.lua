@@ -26,6 +26,7 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
 		keys = {
 
 			{ "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
@@ -56,10 +57,14 @@ return {
 				},
 			})
 
-			require("neodev").setup({})
-
 			local masonconfig = require("mason-lspconfig")
 			local lspconfig = require("lspconfig")
+
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
+				capabilities = capabilities,
+			})
 
 			local servers = {
 				"tsserver",
@@ -72,117 +77,114 @@ return {
 				"terraformls",
 				"gopls",
 				"eslint",
-				"sqlss",
-				"stylua",
+				"sqls",
 			}
 
 			masonconfig.setup({
 				ensure_installed = servers,
 			})
 
-			require("rust-tools").setup({
-				tools = {
-					autoSetHints = true,
-					inlay_hints = {
-						auto = true,
-						show_parameter_hints = true,
-					},
-				},
-				server = {
-					settings = {
-						["rust-analyzer"] = {
-							checkOnSave = {
-								enable = true,
-								command = "clippy",
-							},
-							cargo = {
-								allFeatures = true,
-							},
-							format = { enable = true },
-						},
-					},
-				},
-			})
-
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
-				capabilities = capabilities,
-			})
-
-			lspconfig.dockerls.setup({})
-			lspconfig.yamlls.setup({})
-			lspconfig.jsonls.setup({})
-
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							enable = true,
-						},
-						format = {
-							enable = false,
-						},
-					},
-				},
-			})
-
-			lspconfig.tsserver.setup({
-				on_attach = function(client, bufnr)
-					client.server_capabilities.documentFormattingProvider = false
+			masonconfig.setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
 				end,
-			})
-
-			lspconfig.eslint.setup({
-				on_attach = function(client, bufnr)
-					client.server_capabilities.documentFormattingProvider = false
+				["rust_analyzer"] = function()
+					require("rust-tools").setup({
+						tools = {
+							autoSetHints = true,
+							inlay_hints = {
+								auto = true,
+								show_parameter_hints = true,
+							},
+						},
+						server = {
+							settings = {
+								["rust-analyzer"] = {
+									checkOnSave = {
+										enable = true,
+										command = "clippy",
+									},
+									cargo = {
+										allFeatures = true,
+									},
+									format = { enable = true },
+								},
+							},
+						},
+					})
 				end,
-			})
-
-			lspconfig.zls.setup({
-				cmd = { "zls" },
-			})
-
-			local solidity_format_augroup = vim.api.nvim_create_augroup("SolidityFormat", {})
-
-			lspconfig.solidity_ls_nomicfoundation.setup({
-				on_attach = function(client, bufnr)
-					vim.api.nvim_clear_autocmds({ group = solidity_format_augroup, buffer = bufnr })
-					client.server_capabilities.documentFormattingProvider = false
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						pattern = { "*.sol" },
-						group = solidity_format_augroup,
-						callback = function()
-							vim.cmd("Neoformat solidity forge")
+				["tsserver"] = function()
+					lspconfig.tsserver.setup({
+						on_attach = function(client, bufnr)
+							client.server_capabilities.documentFormattingProvider = false
 						end,
 					})
 				end,
-			})
+				["eslint"] = function()
+					lspconfig.eslint.setup({
+						on_attach = function(client, bufnr)
+							client.server_capabilities.documentFormattingProvider = false
+						end,
+					})
+				end,
+				["lua_ls"] = function()
+					require("neodev").setup({})
 
-			lspconfig.terraformls.setup({})
-
-			lspconfig.gopls.setup({
-				settings = {
-					gopls = {
-						analyses = {
-							unusedparams = true,
+					lspconfig.lua_ls.setup({
+						settings = {
+							Lua = {
+								runtime = {
+									version = "LuaJIT",
+								},
+								workspace = {
+									library = vim.api.nvim_get_runtime_file("", true),
+								},
+								completion = {
+									callSnippet = "Replace",
+								},
+								diagnostics = {
+									enable = true,
+									globals = { "vim" },
+								},
+								format = {
+									enable = false,
+								},
+							},
 						},
-						staticcheck = true,
-						gofumpt = false,
-					},
-				},
+					})
+				end,
+				["zls"] = function()
+					lspconfig.zls.setup({
+						cmd = { "zls" },
+					})
+				end,
+				["solidity_ls_nomicfoundation"] = function()
+					lspconfig.solidity_ls_nomicfoundation.setup({
+						on_attach = function(client, bufnr)
+							client.server_capabilities.documentFormattingProvider = false
+							vim.api.nvim_create_autocmd("BufWritePre", {
+								pattern = { "*.sol" },
+								callback = function()
+									vim.cmd("Neoformat solidity forge")
+								end,
+							})
+						end,
+					})
+				end,
+				["gopls"] = function()
+					lspconfig.gopls.setup({
+						settings = {
+							gopls = {
+								analyses = {
+									unusedparams = true,
+								},
+								staticcheck = true,
+								gofumpt = false,
+							},
+						},
+					})
+				end,
 			})
-
-			lspconfig.sqlls.setup({})
 		end,
 	},
 }
