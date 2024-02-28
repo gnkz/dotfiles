@@ -27,8 +27,10 @@ alias ll="exa -l"
 
 export EDITOR="nvim"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
 export GOBIN="$HOME/go/bin"
-export PATH="$PATH:$HOME/.foundry/bin:$HOME/.cargo/bin:$GOBIN"
+export PATH="$PATH:$HOME/.foundry/bin:$HOME/.cargo/bin:$GOBIN:$BUN_INSTALL/bin"
 export CC=gcc-12
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -40,17 +42,3 @@ eval "$(starship init zsh)"
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-source "$HOME/.config/broot/launcher/bash/br"
-
-function ya() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
