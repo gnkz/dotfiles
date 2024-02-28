@@ -18,8 +18,8 @@ config.font = wezterm.font "Monaspace Neon"
 config.font_size = 14.0
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
-config.initial_cols = 200
-config.initial_rows = 200
+config.initial_cols = 1000
+config.initial_rows = 1000
 
 -- and finally, return the configuration to wezterm
 return config
