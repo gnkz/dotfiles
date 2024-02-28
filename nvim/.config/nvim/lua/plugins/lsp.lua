@@ -90,11 +90,8 @@ return {
 					client.server_capabilities.documentFormattingProvider = true
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = rust_format_augroup,
-						buffer = bufnr,
 						callback = function()
-							vim.lsp.buf.format({
-								bufnr = bufnr
-							})
+							vim.lsp.buf.format()
 						end,
 					})
 				end,
@@ -113,11 +110,11 @@ return {
 			}
 		})
 
-		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		-- lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
-		-- 	capabilities = capabilities
-		-- })
+		lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {
+			capabilities = capabilities
+		})
 
 		lspconfig.dockerls.setup({})
 		lspconfig.yamlls.setup({})
@@ -217,19 +214,11 @@ return {
 						unusedparams = true,
 					},
 					staticcheck = true,
-					gofumpt = true,
+					gofumpt = false,
 				},
 			},
-
-			on_attach = function(client, bufnr)
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					pattern = { "*.go" },
-					callback = function()
-						vim.lsp.buf.format()
-					end
-				})
-			end
 		})
+
 		lspconfig.sqls.setup({
 			on_attach = function(client, bufnr)
 				vim.api.nvim_create_autocmd("BufWritePre", {
