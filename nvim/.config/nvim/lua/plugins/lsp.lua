@@ -72,6 +72,8 @@ return {
 				"terraformls",
 				"gopls",
 				"eslint",
+				"sqlss",
+				"stylua",
 			}
 
 			masonconfig.setup({
@@ -180,7 +182,7 @@ return {
 				},
 			})
 
-			lspconfig.sqls.setup({})
+			lspconfig.sqlls.setup({})
 		end,
 	},
 }
