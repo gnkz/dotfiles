@@ -21,6 +21,9 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
+# Neovide aliases
+alias nv="neovide"
+
 # Exa aliases
 alias ls="exa"
 alias ll="exa -l"
