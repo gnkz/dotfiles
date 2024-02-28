@@ -1,17 +1,25 @@
 return {
-	"folke/zen-mode.nvim",
-	keys = {
-		{ "<leader>z", "<cmd>ZenMode<cr>" },
+	{
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({})
+		end,
 	},
-	opts = {
-		plugins = {
-			tmux = { enable = true },
+	{
+		"folke/zen-mode.nvim",
+		keys = {
+			{ "<leader>z", "<cmd>ZenMode<cr>" },
 		},
-		on_open = function()
-			vim.cmd("set laststatus=0")
-		end,
-		on_close = function()
-			vim.cmd("set laststatus=3")
-		end,
+		opts = {
+			plugins = {
+				tmux = { enable = true },
+			},
+			on_open = function()
+				vim.cmd("set laststatus=0")
+			end,
+			on_close = function()
+				vim.cmd("set laststatus=3")
+			end,
+		},
 	},
 }
