@@ -3,7 +3,12 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				go = { "golines" }
+				lua = { "stylua" },
+				go = { "golines" },
+				typescript = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
+				javascript = { { "prettierd", "prettier" } },
+				javascriptreact = { { "prettierd", "prettier" } },
 			},
 			format_on_save = {
 				timeout_ms = 500,
