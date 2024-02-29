@@ -9,9 +9,10 @@ fi
 
 source ~/.repos/znap/znap.zsh
 
-znap source marlonrichert/zsh-autocomplete
+# znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
+znap source Aloxaf/fzf-tab
 
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
