@@ -59,7 +59,6 @@ return {
 
 			local masonconfig = require("mason-lspconfig")
 			local lspconfig = require("lspconfig")
-
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, {

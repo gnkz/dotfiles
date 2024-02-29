@@ -15,22 +15,22 @@ return {
 					},
 				},
 				presets = {
-					bottom_search = true,
-					command_palette = true,
+					bottom_search = false,
+					command_palette = false,
 					long_message_to_split = true,
-					inc_rename = false,
+					inc_rename = true,
 					lsp_doc_border = false,
 				},
 			})
-		end
+		end,
 	},
 	{
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup({
 				render = "wrapped-compact",
-				max_width = 50
+				max_width = 50,
 			})
-		end
-	}
+		end,
+	},
 }
