@@ -5,7 +5,7 @@ echo "Installing Dotfiles"
 SOURCE_DIR="./src"
 TARGET_DIR="$HOME"
 
-PACKAGES=("nvim" "tmux" "kitty" "wezterm" "zsh")
+PACKAGES=("nvim" "tmux" "kitty" "wezterm" "zsh" "nix" "home-manager")
 
 for package in "${PACKAGES[@]}"
 do
