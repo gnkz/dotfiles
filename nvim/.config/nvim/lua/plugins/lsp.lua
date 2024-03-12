@@ -47,6 +47,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"simrat39/rust-tools.nvim",
 			"folke/neodev.nvim",
+			"akinsho/flutter-tools.nvim",
 		},
 		config = function()
 			require("mason").setup({
@@ -56,6 +57,8 @@ return {
 					},
 				},
 			})
+
+			require("flutter-tools").setup()
 
 			local masonconfig = require("mason-lspconfig")
 			local lspconfig = require("lspconfig")
