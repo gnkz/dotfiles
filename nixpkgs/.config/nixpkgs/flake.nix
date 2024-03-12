@@ -10,7 +10,7 @@
 		outputs = inputs : {
 			homeConfigurations = {
 				tyrion = inputs.home-manager.lib.homeManagerConfiguration {
-					system = "arm64-darwin";
+					system = "aarch64-darwin";
 					homeDirectory = "/Users/gsanchezv";
 					username = "gsanchezv";
 					configuration.imports = [
