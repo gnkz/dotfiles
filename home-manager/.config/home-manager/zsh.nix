@@ -2,9 +2,9 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      v = "neovim";
-      vi = "neovim";
-      vim = "neovim";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
       nv = "neovide";
       ls = "exa";
       ll = "exa -l";
