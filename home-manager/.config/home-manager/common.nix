@@ -3,6 +3,7 @@
     nixfmt
     eza
     localsend
+    ripgrep
     fzf
     neovim
     neovide
