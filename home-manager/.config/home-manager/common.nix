@@ -8,6 +8,7 @@
     neovide
     stow
     nodejs_20
+    wezterm
   ];
 
   programs = {
