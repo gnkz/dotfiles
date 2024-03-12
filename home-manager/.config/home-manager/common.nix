@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  nixpkgs.config.allowUnfreePredicate = _: true;
   home.packages = with pkgs; [
     nixfmt
     eza
@@ -10,6 +11,7 @@
     stow
     nodejs_20
     wezterm
+    obsidian
   ];
 
   programs = {
