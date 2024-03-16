@@ -12,6 +12,8 @@
     nodejs_20
     wezterm
     obsidian
+    telegram-desktop
+    discord
   ];
 
   programs = {
