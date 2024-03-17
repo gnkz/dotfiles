@@ -33,6 +33,9 @@
       enableZshIntegration = true;
     };
 
-    starship = { enable = true; };
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
