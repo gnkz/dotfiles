@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
 
-  home.file."${config.home.homeDirectory}/.config/wezterm" = {
-    source = "../wezterm";
+  home.file.".config/wezterm" = {
+    source = ../wezterm/.config/wezterm;
     recursive = true;
   };
 
