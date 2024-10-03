@@ -22,5 +22,13 @@
     localsend
     fzf
     lazygit
+    signal-desktop
+    gparted
+    qbittorrent
+    lm_sensors
+    psensor
+    brave
+    liquidctl
+    cudatoolkit
   ];
 }

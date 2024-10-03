@@ -3,6 +3,8 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  nix.settings.experimental-features = "nix-command flakes";
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -24,6 +26,12 @@
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "gsanchez" ];
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   services.openssh = {

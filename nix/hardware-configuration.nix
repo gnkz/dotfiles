@@ -58,4 +58,8 @@
     enable = true;
     powerOnBoot = true;
   };
+
+  hardware.ledger.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
 }
