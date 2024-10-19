@@ -1,34 +1,39 @@
-{ config, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    vim
-    wezterm
-    telegram-desktop
-    monaspace
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    stow
+    nodejs_20
     wget
     libgcc
     gcc
     gnumake
     discord
-    firefox
-    neovide
-    git
-    nodejs_20
     unzip
-    spotify
     go
-    framesh
     eza
-    nixfmt
-    localsend
     fzf
     lazygit
-    signal-desktop
-    gparted
-    qbittorrent
+    parted
     lm_sensors
-    psensor
-    brave
-    liquidctl
     cudatoolkit
+    usbutils
+    stylua
+    prettierd
+    golines
+    nixfmt-rfc-style
+    lua-language-server
+    nil
+    ripgrep
+    albert
+    btop
+    obsidian
+    ticktick
+    gitbutler
+    nodePackages.typescript-language-server
+    nerdfonts
+    zellij
+    spotify
+    wl-clipboard
+    distrobox
   ];
 }

@@ -10,6 +10,7 @@ return {
 				javascript = { { "prettierd", "prettier" } },
 				javascriptreact = { { "prettierd", "prettier" } },
 				nix = { { "nixfmt" } },
+				solidity = { { "forge_fmt" } },
 			},
 			format_on_save = {
 				timeout_ms = 500,

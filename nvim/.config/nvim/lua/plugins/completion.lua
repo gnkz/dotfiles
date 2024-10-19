@@ -1,6 +1,6 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
+		"iguanacucumber/magazine.nvim",
 		lazy = false,
 		priority = 9999,
 		dependencies = {
@@ -59,7 +59,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp", group_index = 2 },
-					{ name = "vsnip", group_index = 2 },
+					{ name = "vsnip",    group_index = 2 },
 				}, {
 					{ name = "buffer" },
 				}),
