@@ -35,5 +35,6 @@
     spotify
     wl-clipboard
     distrobox
+    localsend
   ];
 }

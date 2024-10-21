@@ -34,6 +34,9 @@
                   ./zsh.nix
                   ./neovim.nix
                   ./git.nix
+                  ./alacritty.nix
+                  ./wezterm.nix
+                  ./1password-ssh.nix
                 ];
 
                 programs.home-manager.enable = true;
@@ -79,23 +82,26 @@
                   ];
                 };
 
-                programs.alacritty = {
+                programs.kitty = {
                   enable = true;
+                  shellIntegration = {
+                    enableZshIntegration = true;
+                  };
+                  font = {
+                    name = "VictorMono Nerd Font";
+                    size = 14;
+                  };
+                  themeFile = "kanagawa";
                   settings = {
-                    font = {
-                      normal = {
-                        family = "Monoid Nerd Font";
-                        style = "Regular";
-                      };
-                    };
+                    bold_font = "VictorMono Nerd Font Bold";
+                    italic_font = "VictorMono Nerd Font Italic";
+                    bold_italic_font = "VictorMono Nerd Font Bold Italic";
+                    copy_on_select = "clipboard";
+                    hide_window_decorations = "yes";
                   };
                 };
 
-                # programs.fish = {
-                #   enable = true;
-                # };
-
-                services.ssh-agent.enable = true;
+                # services.ssh-agent.enable = true;
                 services.kdeconnect.enable = true;
 
                 services.mopidy = {

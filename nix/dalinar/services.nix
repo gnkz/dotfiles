@@ -21,11 +21,6 @@
     };
   };
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
-
   services.fprintd = {
     enable = true;
     tod = {
@@ -35,5 +30,7 @@
   };
 
   services.fwupd.enable = true;
+
+  services.blueman.enable = true;
 
 }

@@ -84,5 +84,7 @@
 
   hardware.ledger.enable = true;
 
+  hardware.enableAllFirmware = true;
+
   powerManagement.cpuFreqGovernor = "performance";
 }

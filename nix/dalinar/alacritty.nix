@@ -14,20 +14,20 @@
       font = {
         size = 14.0;
         normal = {
-          family = "VictorMono Nerd Font Mono";
+          family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "VictorMono Nerd Font Mono";
+          family = "JetBrainsMono Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "VictorMono Nerd Font Mono";
-          style = "Oblique";
+          family = "JetBrainsMono Nerd Font";
+          style = "Italic";
         };
         bold_italic = {
-          family = "VictorMono Nerd Font Mono";
-          style = "Bold Oblique";
+          family = "JetBrainsMono Nerd Font";
+          style = "Bold Italic";
         };
       };
     };
